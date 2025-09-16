@@ -97,7 +97,10 @@ jobs:
 
       - name: Run TFLint
         shell: powershell
-        run: tflint --init && tflint
+        run: |
+          tflint --init
+          tflint
+
 
 
   terraform_init_apply:
