@@ -14,7 +14,7 @@ jobs:
     runs-on: zxc12
 
     steps:
-      - name: First Step
+      - name: Terraform_init_plan
         run: echo First_Step
 
       - name: Checkout
@@ -53,3 +53,36 @@ jobs:
         id: plan
         run: terraform plan -no-color -input=false
         continue-on-error: true
+
+  terraform_init_apply:
+    runs-on: zxc12
+    needs: terraform_init_plan
+  
+    environment: dev
+    if: github.ref == 'refs/heads/main'  # ✅ This ensures the job only runs on the main branch
+    
+    steps:
+      - name: Terraform_init_apply
+        run: echo Second_Step
+
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: 989df89c-d1df-4bef-9f7a-5ace1982a46b
+          tenant-id: 6780ca35-9ef2-4e3d-9abe-b26fab9e2ed1
+          subscription-id: b7e2d3dd-2fa8-4498-90b2-8ed4b08e15ee
+
+      - name: Terraform Init
+        working-directory: "."
+        id: init
+        run: terraform init -input=false
+
+      - name: Terraform apply
+        working-directory: "."
+        id: apply
+        run: terraform apply --auto-approve
+        continue-on-error: true
+        
