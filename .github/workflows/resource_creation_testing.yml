@@ -18,10 +18,13 @@ jobs:
      run: echo  First_Step
    - name: Checkout
      uses: actions/checkout@v5.0.0
-   - name: Install Terraform
-     uses: little-core-labs/install-terraform@v1.13.0
+
+   - name: Terraform installer
+     uses: autero1/action-terraform@v3.0.1
      with:
-       version: v1.13.0
+       terraform-version: 3.0.1
+          
+
 
    - name: Azure Login
      uses: Azure/login@v2.3.0
