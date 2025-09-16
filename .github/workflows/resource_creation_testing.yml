@@ -20,9 +20,9 @@ jobs:
      uses: actions/checkout@v5.0.0
 
    - name: Terraform installer
-     uses: autero1/action-terraform@v3.0.1
+     uses: autero1/action-terraform@v2.0.0
      with:
-       terraform-version: 3.0.1
+       terraform-version: 2.0.0
           
 
 
