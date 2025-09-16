@@ -59,7 +59,17 @@ jobs:
         id: plan
         run: terraform plan -no-color -input=false
         continue-on-error: true
+        
+  terraform_SCAN:
+      runs-on: zxc12
+      needs: terraform_init_plan
 
+      steps:
+      - name: Terraform_SCAN_tfsec
+        run: echo Second_Step
+
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
 
       # ✅ Correctly added tfsec under the plan job
       - name: Run tfsec (Terraform Security Scan)
@@ -92,7 +102,7 @@ jobs:
     
     steps:
       - name: Terraform_init_apply
-        run: echo Second_Step
+        run: echo Third_Step
 
       - name: Checkout
         uses: actions/checkout@v5.0.0
