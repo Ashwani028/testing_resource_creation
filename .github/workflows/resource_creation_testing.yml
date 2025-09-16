@@ -71,14 +71,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5.0.0
 
-      # ✅ Correctly added tfsec under the plan job
-      - name: Install tfsec
+      - name: Download tfsec binary (Windows)
+        shell: powershell
         run: |
-          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
-      - name: Run tfsec (Terraform Security Scan)
-        uses: aquasecurity/tfsec-action@v1.0.3
-        with:
-          working_directory: "."
+          Invoke-WebRequest -Uri https://github.com/aquasecurity/tfsec/releases/latest/download/tfsec-windows-amd64.exe -OutFile tfsec.exe
+
+      - name: Run tfsec (Terraform Security Scan on Windows)
+        shell: powershell
+        run: .\tfsec.exe .
 
       # 🔍 checkov - Security and Compliance
       - name: Run Checkov (Security & Compliance)
