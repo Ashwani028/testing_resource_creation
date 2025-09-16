@@ -94,9 +94,8 @@ jobs:
 
   terraform_init_apply:
     runs-on: zxc12
-    needs: terraform_init_plan
+    needs: terraform_SCAN
    
-  
     environment: dev
     if: github.ref == 'refs/heads/main'  # ✅ This ensures the job only runs on the main branch
     
