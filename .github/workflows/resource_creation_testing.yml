@@ -1,0 +1,70 @@
+name: "writeaYAMLfileForTesting workflow"
+
+on:
+ push:
+  branches:
+   - 'main'
+   - 'feature/*'
+permissions:
+  id-token: write
+  contents: read
+   
+jobs:
+ terraform_init_plan:
+  runs-on: self-hosted
+  steps:
+   - name: First_Step
+     run: echo  First_Step
+   - name: Checkout
+     uses: actions/checkout@v5.0.0
+   - name: Install Terraform
+     uses: little-core-labs/install-terraform@v2.0.0
+     with:
+       version: v2.0.0
+
+   - name: Azure Login
+     uses: Azure/login@v2.3.0
+     with:
+      client-id: 989df89c-d1df-4bef-9f7a-5ace1982a46b
+      tenant-id: 6780ca35-9ef2-4e3d-9abe-b26fab9e2ed1
+      subscription-id: b7e2d3dd-2fa8-4498-90b2-8ed4b08e15ee
+      
+   - name: Terraform fmt
+     working-directory: "."
+     id: fmt
+     run: terraform fmt -check
+     continue-on-error: true
+
+   - name: Terraform Init
+     working-directory: "."
+     id: init
+     run: terraform init -input=false
+
+   - name: Terraform Validate
+     working-directory: "."
+     id: validate
+     run: terraform validate -no-color
+
+   - name: Terraform Plan
+     working-directory: "."
+     id: plan
+     run: terraform plan -no-color -input=false
+     continue-on-error: true
+
+      
+
+          
+
+
+
+
+     
+  
+
+
+ 
+   
+  
+
+
+
