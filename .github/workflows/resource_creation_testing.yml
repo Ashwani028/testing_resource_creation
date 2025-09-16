@@ -41,12 +41,12 @@ jobs:
      working-directory: "."
      id: init
      run: terraform init -input=false
-
+      
    - name: Terraform Validate
      working-directory: "."
      id: validate
      run: terraform validate -no-color
-
+   
    - name: Terraform Plan
      working-directory: "."
      id: plan
