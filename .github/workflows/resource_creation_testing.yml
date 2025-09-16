@@ -99,7 +99,7 @@ jobs:
         shell: powershell
         run: |
           tflint --init
-          tflint
+          tflint --quiet
 
 
 
