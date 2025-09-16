@@ -60,9 +60,32 @@ jobs:
         run: terraform plan -no-color -input=false
         continue-on-error: true
 
+
+      # ✅ Correctly added tfsec under the plan job
+      - name: Run tfsec (Terraform Security Scan)
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          working_directory: "."
+
+      # 🔍 checkov - Security and Compliance
+      - name: Run Checkov (Security & Compliance)
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: "."
+        env:
+          CHECKOV_SKIP_UPDATE: "true"
+
+      # 🔍 tflint - Terraform linter
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+
+      - name: Run TFLint
+        run: tflint --init && tflint
+
   terraform_init_apply:
     runs-on: zxc12
     needs: terraform_init_plan
+   
   
     environment: dev
     if: github.ref == 'refs/heads/main'  # ✅ This ensures the job only runs on the main branch
