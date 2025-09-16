@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   terraform_init_plan:
-    runs-on: self-hosted
+    runs-on: zxc12
 
     steps:
       - name: First Step
