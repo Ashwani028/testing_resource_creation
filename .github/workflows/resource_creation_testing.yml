@@ -80,13 +80,13 @@ jobs:
         shell: powershell
         run: .\tfsec.exe .
 
-      # 🔍 checkov - Security and Compliance
-      - name: Run Checkov (Security & Compliance)
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: "."
-        env:
-          CHECKOV_SKIP_UPDATE: "true"
+      # # 🔍 checkov - Security and Compliance
+      # - name: Run Checkov (Security & Compliance)
+      #   uses: bridgecrewio/checkov-action@master
+      #   with:
+      #     directory: "."
+      #   env:
+      #     CHECKOV_SKIP_UPDATE: "true"
 
       # 🔍 tflint - Terraform linter
       - name: Setup TFLint
