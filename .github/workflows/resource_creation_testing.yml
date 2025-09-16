@@ -72,6 +72,9 @@ jobs:
         uses: actions/checkout@v5.0.0
 
       # ✅ Correctly added tfsec under the plan job
+      - name: Install tfsec
+        run: |
+          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
       - name: Run tfsec (Terraform Security Scan)
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
