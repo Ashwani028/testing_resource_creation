@@ -19,13 +19,11 @@ jobs:
    - name: Checkout
      uses: actions/checkout@v5.0.0
 
-   - name: Terraform installer
-     uses: autero1/action-terraform@v2.0.0
+   - name: Install Terraform
+     uses: little-core-labs/install-terraform@v2.0.0
      with:
-       terraform-version: 2.0.0
-          
-
-
+       version: v2.0.0
+       
    - name: Azure Login
      uses: Azure/login@v2.3.0
      with:
