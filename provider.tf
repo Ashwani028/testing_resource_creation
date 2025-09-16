@@ -1,6 +1,6 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "RG111"
+    resource_group_name  = "RG11"
     storage_account_name = "infrastorage1431"
     container_name       = "infracontainer"
     key                  = "new.terraform.tfstate"
