@@ -62,7 +62,7 @@ jobs:
         
   terraform_SCAN:
       runs-on: zxc12
-      needs: terraform_init_plan
+     # needs: terraform_init_plan
 
       steps:
       - name: Terraform_SCAN_tfsec
