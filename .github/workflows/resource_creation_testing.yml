@@ -53,7 +53,7 @@ jobs:
         working-directory: "."
         id: validate
         run: terraform validate -no-color
-
+        
       - name: Terraform Plan
         working-directory: "."
         id: plan
